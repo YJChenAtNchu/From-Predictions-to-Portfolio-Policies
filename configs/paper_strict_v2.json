@@ -1,0 +1,54 @@
+{
+  "protocol_id": "nextclose_t1_t6_stride5_v2_20260905",
+  "split_protocol_id": "chronological_90_10_label_availability_purge_v1_20260905",
+  "accounting_protocol_id": "drift_full_l1_entry_fee_mark_to_market_v1_20260905",
+  "information_set": "adjusted OHLC through close[t]",
+  "decision_time": "after close[t]",
+  "execution": "adjusted close[t+1]",
+  "target": "adjusted_close[t+6] / adjusted_close[t+1]",
+  "lookback": 15,
+  "holding_sessions": 5,
+  "stride": 5,
+  "feature_order": ["Close", "Open", "High", "Low"],
+  "architecture": {
+    "frontend": "F3_a2_5day",
+    "solver": "LISTA",
+    "backend": "sector GRU + temporal attention + regression/classification heads",
+    "lista_unroll_steps": 6
+  },
+  "training": {
+    "learning_rate": 2e-05,
+    "dropout": 0.2,
+    "weight_decay": 0.0001,
+    "beta": 0.8,
+    "batch_size": 16,
+    "loss": "CE + MSE + unweighted ranking",
+    "rank_weight": 1.0,
+    "ema_loss_normalization": true,
+    "ema_alpha": 0.1,
+    "inner_train_fraction": 0.9,
+    "deterministic": true
+  },
+  "allocation": {
+    "rule": "HHI Effective-K",
+    "k_min": 1,
+    "k_max": 5,
+    "eta_k": 0.5,
+    "eta_omega": 2.0,
+    "transaction_fee": 0.001
+  },
+  "ensemble": {
+    "composition": "Alpha-policy Multi-Strong",
+    "learners": 5,
+    "alpha_source": "training outcome at the inner-validation-selected checkpoint",
+    "test_time_alpha_update": false
+  },
+  "datasets": [
+    "DJIA30_2026",
+    "SP500_TOP50_EX_PLTR_2026",
+    "TAIWAN50_0050_EX_LATE_HISTORY_2026_PREVCLOSE_ADJUSTED"
+  ],
+  "outer_train": "execution-to-exit interval ends no later than 2020-12-31",
+  "outer_validation": "2021-2023; reporting only after strict-v2 migration",
+  "final_test": "2024-2025; sealed until checkpoints and alpha are frozen"
+}

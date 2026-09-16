@@ -1,6 +1,7 @@
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -14,12 +15,12 @@ venv/
 *.key
 
 # Raw data, checkpoints, and experiment outputs
-data/
-checkpoints/
-checkpoint*/
-outputs/
-runs/
-logs/
+/data/
+/checkpoints/
+/checkpoint*/
+/outputs/
+/runs/
+/logs/
 *.pt
 *.pth
 *.ckpt
@@ -42,4 +43,3 @@ Thumbs.db
 *.log
 *.out
 *.synctex.gz
-
