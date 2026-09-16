@@ -45,6 +45,19 @@ python -m venv .venv
 .venv\Scripts\python.exe -m pip install -e ".[dev]"
 ```
 
+## Docker
+
+Build the minimal CUDA environment and run the test suite:
+
+```powershell
+docker build -t predictions-to-portfolio-policies:strict-v2 .
+docker run --rm --gpus all predictions-to-portfolio-policies:strict-v2
+```
+
+The formal experiment image and verified package versions are documented in
+`docs/ENVIRONMENT.md`. Dataset mounts and formal training commands are in
+`docs/DOCKER.md`; raw data and outputs are never copied into the image.
+
 ## Prepare a strict-v2 dataset
 
 Raw adjusted-OHLC files are not redistributed. The builder expects a locked
@@ -90,7 +103,7 @@ python -m pytest
 ```
 
 See `docs/PROTOCOL.md`, `docs/METHOD_TO_CODE_MAP.md`,
-`docs/ENVIRONMENT.md`, `docs/SOURCE_MANIFEST.csv`, and
+`docs/ENVIRONMENT.md`, `docs/DOCKER.md`, `docs/SOURCE_MANIFEST.csv`, and
 `docs/REPRODUCIBILITY_SCOPE.md` before interpreting or extending the code.
 
 Raw market data, checkpoints, full prediction arrays, third-party baseline

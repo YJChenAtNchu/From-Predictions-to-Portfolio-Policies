@@ -18,6 +18,7 @@ from inferred package metadata.
 | CUDA runtime | 12.8 |
 | cuDNN | 9.1.9 |
 | NumPy | 2.4.3 |
+| pandas | 3.0.1 |
 
 The package requirements intentionally specify portable lower bounds. Exact
 paper reproduction should use the archived CUDA environment above; CPU-only
