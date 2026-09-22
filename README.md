@@ -116,6 +116,5 @@ intentionally excluded.
 ## Citation and release status
 
 Use `CITATION.cff` for the current citation metadata. This repository remains
-private and is not yet a tagged public release. Before changing its visibility,
-complete `docs/PUBLIC_RELEASE_CHECKLIST.md`, including author approval of the
-software license.
+private and is not yet a tagged public release. Repository visibility and the
+first version tag will be coordinated with the manuscript release.
