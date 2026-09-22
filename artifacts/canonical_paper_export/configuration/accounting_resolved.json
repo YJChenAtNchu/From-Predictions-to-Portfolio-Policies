@@ -1,0 +1,19 @@
+{
+  "accounting_protocol_id": "drift_full_l1_entry_fee_mark_to_market_v1_20260905",
+  "initial_wealth": 1.0,
+  "initial_state": "cash before first risky-asset entry; risky drift weights are all zero",
+  "initial_turnover": "full-L1 distance from zero risky holdings to first target policy; equals one for a fully invested long-only policy",
+  "transaction_fee": 0.001,
+  "fee_units": "proportion of full-L1 turnover; a complete switch between two assets has turnover two",
+  "drift_weights": "target_weight[n-1] * delayed_relative[n-1] / gross_relative[n-1]",
+  "gross_relative": "sum_a target_weight[n,a] * delayed_relative[n,a]",
+  "net_relative": "(1 - fee * full_L1_turnover[n]) * gross_relative[n]",
+  "wealth": "wealth[n+1] = wealth[n] * net_relative[n]",
+  "terminal_treatment": "mark to market after the last holding interval; no liquidation trade and no terminal fee",
+  "mdd_frequency": "decision-node wealth only",
+  "risk_free_rate": 0.0,
+  "return_std_ddof": 1,
+  "policy_constraints": "long-only and fully invested",
+  "canonical_source": "torch_portfolio_accounting_v2.py",
+  "legacy_equivalence": "verified by automated test on valid long-only fully invested policies"
+}

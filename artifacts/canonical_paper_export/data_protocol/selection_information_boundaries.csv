@@ -1,0 +1,7 @@
+dataset,stage,fitting_labels_available_by,evaluation_decisions_start,selection_outcomes_available_by,next_stage_decisions_start,fitting_before_evaluation,selection_before_next_stage,description
+DJIA30_2026,inner_checkpoint_selection,2019-10-16,2019-10-22,2020-12-31,2021-01-07,True,True,inner train fitting -> inner validation checkpoint -> outer validation
+DJIA30_2026,proposed_outer_validation_selection,2020-12-31,2021-01-07,2023-12-26,2024-01-02,True,True,outer validation selects architecture/config/rule -> frozen final test
+SP500_TOP50_EX_PLTR_2026,inner_checkpoint_selection,2020-03-05,2020-03-11,2020-12-24,2020-12-31,True,True,inner train fitting -> inner validation checkpoint -> outer validation
+SP500_TOP50_EX_PLTR_2026,proposed_outer_validation_selection,2020-12-24,2020-12-31,2023-12-27,2024-01-03,True,True,outer validation selects architecture/config/rule -> frozen final test
+TAIWAN50_0050_EX_LATE_HISTORY_2026_PREVCLOSE_ADJUSTED,inner_checkpoint_selection,2019-10-07,2019-10-15,2020-12-25,2020-12-31,True,True,inner train fitting -> inner validation checkpoint -> outer validation
+TAIWAN50_0050_EX_LATE_HISTORY_2026_PREVCLOSE_ADJUSTED,proposed_outer_validation_selection,2020-12-25,2020-12-31,2023-12-27,2024-01-03,True,True,outer validation selects architecture/config/rule -> frozen final test

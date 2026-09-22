@@ -1,0 +1,130 @@
+{
+  "protocol_id": "nextclose_t1_t6_stride5_v2_20260905",
+  "split_protocol_id": "chronological_90_10_label_availability_purge_v1_20260905",
+  "architecture": {
+    "condition": "F3_a2_5day__lista__hhi",
+    "frontend": "asset-aligned sector-shared ML-CSC/LISTA",
+    "kernels": [
+      [
+        4,
+        4
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "strides": [
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "channels": [
+      32,
+      32,
+      32
+    ],
+    "lista_iterations": 6,
+    "activation": "ReLU(u + learned_bias); empirically sparse non-negative latent representation",
+    "classical_soft_threshold_claim": false,
+    "sparse_initialization": "fan_in_gaussian",
+    "sparse_initialization_scale": 0.1,
+    "sparse_initialization_fan_in": "in_channels * kernel_height * kernel_width",
+    "initialization_std": {
+      "layer1": 0.025,
+      "layer2": 0.0125,
+      "layer3": 0.017677669529663688
+    },
+    "sector_gru_hidden": 64,
+    "attention_layers": 3,
+    "attention_heads": 4,
+    "attention_axis": "time T after concatenating sector GRU states along features",
+    "output_length": 1,
+    "parameter_counts_by_dataset": {
+      "DJIA30_2026": 1951290,
+      "SP500_TOP50_EX_PLTR_2026": 2362230,
+      "TAIWAN50_0050_EX_LATE_HISTORY_2026_PREVCLOSE_ADJUSTED": 1648644
+    }
+  },
+  "training": {
+    "lr": 2e-05,
+    "dropout_rate": 0.2,
+    "weight_decay": 0.0001,
+    "beta": 0.8,
+    "lista_unroll_steps": 6,
+    "eta_k": 0.5,
+    "eta_omega": 2.0,
+    "rank_weight": 1.0,
+    "use_ema_loss_norm": true,
+    "loss_mode": "ce_mse_rank",
+    "decision_rule": "hhi_effective",
+    "k_min": 1,
+    "k_max": 5,
+    "fee": 0.001,
+    "trading_freq": 5.0,
+    "batch_size": 16,
+    "ema_alpha": 0.1,
+    "weight_update_mode": "sample_specific",
+    "profit_source": "one_step_sum",
+    "inner_train_val_split": 0.9,
+    "lbp_unroll_steps": 4,
+    "optimizer": "torch.optim.Adam",
+    "max_outer_rounds": 50,
+    "inner_epochs_cap": 1000,
+    "inner_patience": 5,
+    "outer_patience": 5,
+    "inner_monitor": "uniform-weight inner-validation CE+MSE+unweighted pairwise ranking objective",
+    "outer_monitor": "inner-validation net portfolio profit",
+    "outer_validation_role": "configuration assessment only; never checkpoint selection",
+    "final_test_role": "frozen evaluation only",
+    "ce_mse_weighting": "current ProfitBoost sample weights normalized to minibatch mean one",
+    "ranking_weighting": "batch-level scalar; not multiplied by sample weights",
+    "ema_scope": "reset at each outer round; update on inner-training minibatches only; frozen during validation",
+    "optimizer_scope": "one Adam instance retained across outer rounds"
+  },
+  "allocation": {
+    "score_candidate_set": "top k_max=5 scores",
+    "standardization": "population standard deviation (correction=0) plus epsilon=1e-8",
+    "pseudo_probability": "softmax(z / eta_k)",
+    "HHI": "sum(p^2)",
+    "effective_cardinality": "1/HHI",
+    "rounding": "floor(N_eff + 0.5)",
+    "clipping": "[k_min=1,k_max=5]",
+    "topk_ties": "stable descending sort; earlier order.csv asset wins exact ties",
+    "portfolio_weights": "softmax(selected_scores / eta_omega)"
+  },
+  "ensemble": {
+    "J": 5,
+    "alpha_source": "non-negative training-profit alpha at each learner's inner-validation-selected outer round",
+    "composition": "sum(max(alpha_j,0)*policy_j)/sum(max(alpha_j,0))",
+    "zero_alpha_fallback": "equal average of all J learner policies",
+    "alpha_frozen_before": "outer validation and final test"
+  },
+  "determinism": {
+    "PYTHONHASHSEED": true,
+    "random_seed": true,
+    "numpy_seed": true,
+    "torch_seed": true,
+    "cuda_seed_all": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "flash_sdp": false,
+    "memory_efficient_sdp": false,
+    "math_sdp": true,
+    "future_rerun_requirement": "torch.use_deterministic_algorithms(True) without warn_only"
+  }
+}

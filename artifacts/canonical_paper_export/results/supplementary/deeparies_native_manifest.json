@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "protocol_id": "nextclose_t1_t6_stride5_v2_20260905",
+  "accounting_protocol_id": "drift_full_l1_entry_fee_mark_to_market_v1_20260905",
+  "fee": 0.001,
+  "target": "adjusted_close[t+1+h] / adjusted_close[t+1] - 1 for h in {1,5,20}",
+  "scope": "supplementary native 1/5/20-day; excluded from fixed-five rankings",
+  "annualization": {
+    "GARR": "APV ** (252 / sum(selected_horizon_sessions)) - 1",
+    "ARR": "(252 / mean(selected_horizon_sessions)) * mean(net interval return)",
+    "AVol": "sqrt(252 / mean(selected_horizon_sessions)) * sample sd(net interval return)"
+  },
+  "rows": 30
+}

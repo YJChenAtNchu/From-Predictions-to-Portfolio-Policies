@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software or its processed results, please cite the associated manuscript."
+title: "From Predictions to Portfolio Policies: Structured Sparse Signals, Adaptive Support, and Decision-Feedback Composition"
+type: software
+authors:
+  - family-names: Chen
+    given-names: Yi-Chieh
+  - family-names: Peng
+    given-names: Guan-Ju
+repository-code: "https://github.com/YJChenAtNchu/From-Predictions-to-Portfolio-Policies"
+version: 0.1.0
+keywords:
+  - portfolio decision support
+  - sparse representation
+  - adaptive portfolio cardinality
+  - decision feedback
+  - policy-space ensemble
+preferred-citation:
+  type: article
+  title: "From Predictions to Portfolio Policies: Structured Sparse Signals, Adaptive Support, and Decision-Feedback Composition"
+  authors:
+    - family-names: Chen
+      given-names: Yi-Chieh
+    - family-names: Peng
+      given-names: Guan-Ju
+  year: 2026

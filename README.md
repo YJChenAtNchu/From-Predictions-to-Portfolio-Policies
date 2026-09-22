@@ -1,17 +1,16 @@
 # From Predictions to Portfolio Policies
 
-Private companion repository for the manuscript:
+Companion repository for the manuscript:
 
 > **From Predictions to Portfolio Policies: Structured Sparse Signals,
 > Adaptive Support, and Decision-Feedback Composition**
 
 ## Release status
 
-This repository is being assembled incrementally from the audited strict-v2
-paper runtime. The current release contains the canonical Proposed method,
-frozen configuration, configurable entry points, source hashes, and lightweight
-implementation tests. Compact verified paper artifacts will be added in a
-later release step.
+This private pre-release contains the canonical Proposed method, frozen
+configuration, configurable entry points, source hashes, implementation tests,
+and the compact strict-v2 paper export. Repository visibility will remain
+private until the authors coordinate the manuscript and code release.
 
 The formal timing protocol is:
 
@@ -33,7 +32,8 @@ Therefore the five-session target is
 - `scripts/train_proposed.py` - canonical full-method training and frozen evaluation
 - `tests/` - protocol, shape, HHI, EMA, accounting, and source-integrity tests
 - `docs/` - protocol, method-to-code map, scope, and source manifest
-- `artifacts/canonical_paper_export/` - reserved for compact verified results
+- `artifacts/canonical_paper_export/` - verified strict-v2 metrics, curves,
+  protocol metadata, configuration, and audit summaries
 
 ## Installation
 
@@ -105,7 +105,17 @@ python -m pytest
 See `docs/PROTOCOL.md`, `docs/METHOD_TO_CODE_MAP.md`,
 `docs/ENVIRONMENT.md`, `docs/DOCKER.md`, `docs/SOURCE_MANIFEST.csv`, and
 `docs/REPRODUCIBILITY_SCOPE.md` before interpreting or extending the code.
+Baseline provenance and adaptation details are recorded in
+`docs/BASELINES.md`. The artifact schema and exclusions are documented in
+`artifacts/canonical_paper_export/README.md`.
 
 Raw market data, checkpoints, full prediction arrays, third-party baseline
 repositories, temporary outputs, and historical exploratory experiments are
 intentionally excluded.
+
+## Citation and release status
+
+Use `CITATION.cff` for the current citation metadata. This repository remains
+private and is not yet a tagged public release. Before changing its visibility,
+complete `docs/PUBLIC_RELEASE_CHECKLIST.md`, including author approval of the
+software license.

@@ -1,0 +1,41 @@
+{
+  "status": "complete",
+  "protocol_id": "nextclose_t1_t6_stride5_v2_20260905",
+  "split_protocol_id": "chronological_90_10_label_availability_purge_v1_20260905",
+  "accounting_protocol_id": "drift_full_l1_entry_fee_mark_to_market_v1_20260905",
+  "cohort": "matched experiment seeds 001-010; deterministic classical paths have no interval",
+  "fee": 0.001,
+  "annualization_factor": 50.4,
+  "risk_free_rate": 0.0,
+  "transaction_cost_sensitivity": {
+    "fees": [
+      0.0005,
+      0.001,
+      0.002,
+      0.005
+    ],
+    "methods": [
+      "Buy-and-Hold Equal Weight",
+      "FinGAT",
+      "Proposed Feedback + Reliability-policy"
+    ],
+    "policy_status": "frozen; no fee-specific fitting or selection"
+  },
+  "metrics": {
+    "APV": "V_T / V_0",
+    "GARR": "APV ** (50.4 / T) - 1",
+    "ARR": "50.4 * mean(net_relative - 1)",
+    "AVol": "sqrt(50.4) * sample_sd(net_relative - 1), ddof=1",
+    "ASR": "ARR / AVol",
+    "MDD": "max(1 - wealth / cumulative_max(wealth))",
+    "Calmar": "GARR / MDD",
+    "Turnover": "sum full-L1 drift-aware turnover, including initial entry"
+  },
+  "missing_count": 0,
+  "missing": [],
+  "excluded": {
+    "DeepAries": "native dynamic 1/5/20-day horizon; supplementary only",
+    "weighted_ranking": "not part of the formal method",
+    "archived_same_close": "wrong observation/execution protocol"
+  }
+}
