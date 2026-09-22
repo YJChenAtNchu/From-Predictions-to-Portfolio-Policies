@@ -112,7 +112,25 @@ The formal environment and dataset-mount examples are documented in
 [`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md) and
 [`docs/DOCKER.md`](docs/DOCKER.md).
 
-### Prepare a strict-v2 dataset
+### Use the included strict-v2 datasets
+
+The model-ready processed tensors for all three formal markets are included in
+[`datasets/strict_v2_model_ready/`](datasets/strict_v2_model_ready/). They
+contain normalized input windows, target return relatives, sample dates,
+locked asset order, and sector assignments. Raw absolute price files are not
+redistributed.
+
+Run a one-learner smoke test directly from the included data:
+
+```powershell
+python scripts/train_proposed.py `
+  --data-root datasets/strict_v2_model_ready `
+  --datasets DJIA30_2026 `
+  --seed-start 1 --seed-end 1 `
+  --smoke
+```
+
+### Rebuild a strict-v2 dataset
 
 Raw adjusted-OHLC files are not redistributed. The builder expects a locked
 universe source directory containing `order.csv` and archived sample-date files,
@@ -133,7 +151,7 @@ Run a one-learner smoke test while keeping final-test tensors sealed:
 
 ```powershell
 python scripts/train_proposed.py `
-  --data-root data/execution_t1_t6_v2_20260905 `
+  --data-root datasets/strict_v2_model_ready `
   --datasets DJIA30_2026 `
   --seed-start 1 --seed-end 1 `
   --smoke
@@ -145,7 +163,7 @@ coefficients have been fixed.
 
 ```powershell
 python scripts/train_proposed.py `
-  --data-root data/execution_t1_t6_v2_20260905 `
+  --data-root datasets/strict_v2_model_ready `
   --seed-start 1 --seed-end 10 `
   --allow-final-test
 ```
@@ -155,6 +173,8 @@ python scripts/train_proposed.py `
 - `src/prediction_to_portfolio_policies/runtime/` - audited Proposed runtime.
 - `configs/paper_strict_v2.json` - frozen paper configuration.
 - `scripts/` - dataset preparation and canonical training entry points.
+- `datasets/strict_v2_model_ready/` - model-ready processed tensors for the
+  three formal markets.
 - `tests/` - timing, shape, HHI, EMA, accounting, and artifact-integrity tests.
 - `artifacts/canonical_paper_export/` - verified metrics, paths, protocol
   metadata, configurations, and checksums.

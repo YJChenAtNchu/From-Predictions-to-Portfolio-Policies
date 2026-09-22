@@ -28,6 +28,11 @@ venv/
 *.npy
 *.npz
 
+# Public, model-ready strict-v2 tensors are intentionally versioned.
+!/datasets/
+!/datasets/**
+!/datasets/**/*.npy
+
 # Editors and operating systems
 .vscode/
 .idea/

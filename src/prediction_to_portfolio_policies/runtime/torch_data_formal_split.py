@@ -75,15 +75,15 @@ def _assert_target_date_rules(
         "outer_train_target_end_lte_2020_12_31": bool(
             (outer_train_dates["target_end_date"] <= pd.Timestamp("2020-12-31")).all()
         ),
-        "outer_val_target_end_2021_2022": bool(
+        "outer_val_target_end_2021_2023": bool(
             (
                 (outer_val_dates["target_end_date"] >= pd.Timestamp("2021-01-01"))
-                & (outer_val_dates["target_end_date"] <= pd.Timestamp("2022-12-31"))
+                & (outer_val_dates["target_end_date"] <= pd.Timestamp("2023-12-31"))
             ).all()
         ),
-        "final_test_target_end_2023_2025": bool(
+        "final_test_target_end_2024_2025": bool(
             (
-                (final_test_dates["target_end_date"] >= pd.Timestamp("2023-01-01"))
+                (final_test_dates["target_end_date"] >= pd.Timestamp("2024-01-01"))
                 & (final_test_dates["target_end_date"] <= pd.Timestamp("2025-12-31"))
             ).all()
         ),

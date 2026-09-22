@@ -1,0 +1,31 @@
+Ticker,Broad Sector,index,order
+AMZN,Consumer & Retail,0,0
+KO,Consumer & Retail,0,1
+HD,Consumer & Retail,0,2
+MCD,Consumer & Retail,0,3
+NKE,Consumer & Retail,0,4
+PG,Consumer & Retail,0,5
+WMT,Consumer & Retail,0,6
+AXP,Financials,1,7
+GS,Financials,1,8
+JPM,Financials,1,9
+TRV,Financials,1,10
+V,Financials,1,11
+AMGN,Health Care,2,12
+JNJ,Health Care,2,13
+MRK,Health Care,2,14
+UNH,Health Care,2,15
+MMM,Industrials,3,16
+BA,Industrials,3,17
+CAT,Industrials,3,18
+CVX,Industrials,3,19
+SHW,Industrials,3,20
+HON,Industrials,3,21
+AAPL,Technology,4,22
+CSCO,Technology,4,23
+DIS,Technology,4,24
+IBM,Technology,4,25
+NVDA,Technology,4,26
+MSFT,Technology,4,27
+CRM,Technology,4,28
+VZ,Technology,4,29

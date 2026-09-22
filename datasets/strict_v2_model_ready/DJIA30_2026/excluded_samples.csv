@@ -1,0 +1,5 @@
+information_end_date,reason,execution_date,target_end_date
+2009-01-23,insufficient_context,,
+2020-12-30,crosses_split_boundary_or_outside_protocol,2020-12-31,2021-01-08
+2023-12-22,crosses_split_boundary_or_outside_protocol,2023-12-26,2024-01-03
+2025-12-30,insufficient_context,,
