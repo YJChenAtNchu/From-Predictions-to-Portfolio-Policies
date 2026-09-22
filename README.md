@@ -62,7 +62,19 @@ full frozen final-test wealth paths.
 
 ## Reproducibility scope
 
-- Markets: DJIA30, S&P 500 Top-50 excluding PLTR, and corrected Taiwan50.
+Adjusted close, open, high, and low records are obtained from Yahoo Finance.
+Each 15-session window is normalized by the adjusted close immediately
+preceding the input window.
+
+| Market | Assets | Available adjusted-price history | Final-test decisions |
+|---|---:|---|---:|
+| DJIA30 | 30 | 2009-2025 | 100 |
+| S&P 500 Top-50 excluding PLTR | 50 | 2013-2025 | 99 |
+| Taiwan50 excluding late-history stocks | 44 | 2009-2025 | 96 |
+
+The three universes are retrospectively locked rather than point-in-time
+reconstructions; survivorship and availability bias may therefore remain.
+
 - Input: 15-session adjusted OHLC windows ordered `[Close, Open, High, Low]`.
 - Target: `adjusted_close[t+6] / adjusted_close[t+1]`.
 - Selection: chronological inner validation; final test is frozen evaluation.
